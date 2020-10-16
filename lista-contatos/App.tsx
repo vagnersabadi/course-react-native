@@ -16,6 +16,10 @@ function App() {
             headerStyle: {
               backgroundColor: "#6ca2f7",
             },
+            headerTitleStyle: {
+              color: 'white',
+              fontSize: 30,
+            }
           }}
         />
       </Stack.Navigator>
