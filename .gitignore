@@ -1,5 +1,8 @@
 node_modules/**/*
 lista-contatos/node_modules/**/*
+series/node_modules/**/*
+*/node_modules/**/*
+
 
 .expo/*
 npm-debug.*
