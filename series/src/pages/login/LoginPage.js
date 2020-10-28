@@ -9,12 +9,12 @@ import {
     Alert
 } from 'react-native';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
 
     render() {
         return (
             <View>
-                <Text>Login</Text>
+                <Text>Login Test</Text>
             </View>
         )
     }

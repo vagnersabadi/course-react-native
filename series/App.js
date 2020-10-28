@@ -1,18 +1,37 @@
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+// import { createAppContainer, createStackNavigator } from 'react-navigation';
+
+// import { LoginPage } from "./src/pages/login/LoginPage";
+
+
+// const AppNavigator = createStackNavigator({
+//   'Login': {
+//     screen: LoginPage,
+//     navigationOptions: {
+//       title: 'Bem vindo!',
+//     }
+//   },
+// });
+
+// const AppContainer = createAppContainer(AppNavigator);
+
+// export default AppContainer;
+
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import { LoginPage } from "./src/pages/login/LoginPage";
 
-rea
+const Stack = createStackNavigator();
 
-const AppNavigator = createStackNavigator({
-  'Login': {
-    screen: LoginPage,
-    navigationOptions: {
-      title: 'Bem vindo!',
-    }
-  },
-});
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
-const AppContainer = createAppContainer(AppNavigator);
-
-export default AppContainer;
+export default App;
