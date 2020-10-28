@@ -15,6 +15,7 @@ export class LoginPage extends React.Component {
         return (
             <View>
                 <Text>Login Test</Text>
+                
             </View>
         )
     }
