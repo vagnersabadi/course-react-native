@@ -12,20 +12,43 @@ import FormRow from '../../components/FormRow';
 
 export class LoginPage extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            mail: '',
+            password: '',
+            isLoading: false,
+            message: ''
+        }
+    }
+
+    onChangeHandler(field, value) {
+		this.setState({
+			[field]: value
+        });
+	}
+
     render() {
         return (
             <View style={styles.container}>
-                <FormRow>
+                <FormRow first>
                     <TextInput
                         style={styles.input}
-                        placeholder="user@mail.com" />
+                        placeholder="user@mail.com" 
+                        value={this.state.mail}
+                        onChangeText={value => this.onChangeHandler('mail', value)}
+                        />
                 </FormRow>
 
-                <FormRow>
+                <FormRow last>
                     <TextInput
                         style={styles.input}
                         placeholder="*******"
                         secureTextEntry
+                        value={this.state.password}
+                        onChangeText={value => this.onChangeHandler('password', value)}
+
                     />
                 </FormRow>
             </View>
