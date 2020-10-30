@@ -24,10 +24,34 @@ export class LoginPage extends React.Component {
     }
 
     onChangeHandler(field, value) {
-		this.setState({
-			[field]: value
+        this.setState({
+            [field]: value
         });
-	}
+    }
+
+
+    renderMessage() {
+        const { message } = this.state;
+        if (!message)
+            return null;
+
+        return (
+            <View>
+                <Text>{message}</Text>
+            </View>
+        );
+    }
+
+    renderButton() {
+        if (this.state.isLoading)
+            return <ActivityIndicator />;
+        return (
+            <Button
+                title="Entrar"
+                onPress={() => this.tryLogin()} />
+        );
+    }
+
 
     render() {
         return (
@@ -35,10 +59,10 @@ export class LoginPage extends React.Component {
                 <FormRow first>
                     <TextInput
                         style={styles.input}
-                        placeholder="user@mail.com" 
+                        placeholder="user@mail.com"
                         value={this.state.mail}
                         onChangeText={value => this.onChangeHandler('mail', value)}
-                        />
+                    />
                 </FormRow>
 
                 <FormRow last>
@@ -51,6 +75,10 @@ export class LoginPage extends React.Component {
 
                     />
                 </FormRow>
+
+                { this.renderButton()}
+                { this.renderMessage()}
+
             </View>
         )
     }
