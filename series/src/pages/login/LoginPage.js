@@ -9,6 +9,8 @@ import {
     Alert
 } from 'react-native';
 import FormRow from '../../components/FormRow';
+import { configFirebase } from '../../environments/firebase';
+import firebase from "firebase";
 
 export class LoginPage extends React.Component {
 
@@ -23,11 +25,37 @@ export class LoginPage extends React.Component {
         }
     }
 
+    componentDidMount() {
+        firebase.initializeApp(configFirebase);
+    }
+
     onChangeHandler(field, value) {
         this.setState({
             [field]: value
         });
     }
+
+    tryLogin() {
+		this.setState({ isLoading: true, message: '' });
+		const { mail: email, password } = this.state;
+
+		this.props.tryLogin({ email, password })
+			.then(user => {
+				if (user)
+					return this.props.navigation.replace('Main');
+
+				this.setState({
+					isLoading: false,
+					message: ''
+				});
+			})
+			.catch(error => {
+				this.setState({
+					isLoading: false,
+					message: this.getMessageByErrorCode(error.code)
+				});
+			});
+	}
 
 
     renderMessage() {
@@ -61,6 +89,8 @@ export class LoginPage extends React.Component {
                         style={styles.input}
                         placeholder="user@mail.com"
                         value={this.state.mail}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
                         onChangeText={value => this.onChangeHandler('mail', value)}
                     />
                 </FormRow>
@@ -72,7 +102,6 @@ export class LoginPage extends React.Component {
                         secureTextEntry
                         value={this.state.password}
                         onChangeText={value => this.onChangeHandler('password', value)}
-
                     />
                 </FormRow>
 
